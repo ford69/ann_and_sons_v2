@@ -1,16 +1,16 @@
+
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, ChevronUp } from 'lucide-react';
 import { FaUserTie, FaUsers, FaChartLine, FaShieldAlt, FaBrain, FaHandshake } from 'react-icons/fa';
 
-interface Service {
-  icon: React.ComponentType<any>;
+type Service = {
+  icon: React.FC<any>;
   title: string;
   shortDescription: string;
   fullDescription: string;
   features: string[];
   benefits: string[];
-}
+};
 
 const Services: React.FC = () => {
   const [expandedService, setExpandedService] = useState<number | null>(null);
@@ -155,11 +155,10 @@ const Services: React.FC = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="space-y-8">
           {services.map((service, index) => {
             const IconComponent = service.icon;
             const isExpanded = expandedService === index;
-            
             return (
               <motion.div
                 key={index}
@@ -167,76 +166,62 @@ const Services: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl border border-gray-700 shadow-2xl overflow-hidden"
+                className="bg-gradient-to-br from-black to-gray-900 rounded-xl border border-gray-800 overflow-hidden"
               >
-                <div className="p-8">
-                  <div className="flex items-start justify-between mb-6">
-                    <div className="flex items-center space-x-4">
-                      <div className="bg-white p-3 rounded-xl">
-                        <IconComponent className="w-8 h-8 text-black" />
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-bold text-white mb-2">
-                          {service.title}
-                        </h3>
-                        <p className="text-gray-400 text-sm">
-                          {service.shortDescription}
-                        </p>
-                      </div>
-                    </div>
-                    
+                <div className="flex items-center gap-6 p-8">
+                  <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-3 rounded-lg">
+                    <IconComponent className="w-7 h-7 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-bold text-white mb-1">{service.title}</h3>
+                    <p className="text-gray-400 text-sm mb-2">{service.shortDescription}</p>
                     <button
                       onClick={() => toggleService(index)}
-                      className="text-gray-400 hover:text-white transition-colors p-2"
+                      className="text-xs text-gray-400 hover:text-white transition-colors underline"
                     >
-                      {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                      {isExpanded ? 'Hide Details' : 'Show Details'}
                     </button>
                   </div>
-
-                  <AnimatePresence>
-                    {isExpanded && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="space-y-6"
-                      >
-                        <div className="border-t border-gray-700 pt-6">
-                          <p className="text-gray-300 leading-relaxed mb-6">
-                            {service.fullDescription}
-                          </p>
-                          
-                          <div className="grid md:grid-cols-2 gap-6">
-                            <div>
-                              <h4 className="text-white font-semibold mb-3">Key Features</h4>
-                              <ul className="space-y-2">
-                                {service.features.map((feature, featureIndex) => (
-                                  <li key={featureIndex} className="text-gray-400 text-sm flex items-start">
-                                    <span className="w-1.5 h-1.5 bg-white rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                                    {feature}
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                            
-                            <div>
-                              <h4 className="text-white font-semibold mb-3">Benefits</h4>
-                              <ul className="space-y-2">
-                                {service.benefits.map((benefit, benefitIndex) => (
-                                  <li key={benefitIndex} className="text-gray-400 text-sm flex items-start">
-                                    <span className="w-1.5 h-1.5 bg-white rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                                    {benefit}
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
                 </div>
+                <AnimatePresence>
+                  {isExpanded && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="px-8 pb-8"
+                    >
+                      <p className="text-gray-300 leading-relaxed mb-4">
+                        {service.fullDescription}
+                      </p>
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <div>
+                          <h4 className="text-white font-semibold mb-2 text-sm">Key Features</h4>
+                          <ul className="space-y-1">
+                            {service.features.map((feature, featureIndex) => (
+                              <li key={featureIndex} className="text-gray-400 text-xs flex items-start">
+                                <span className="w-1.5 h-1.5 bg-white rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                                {feature}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div>
+                          <h4 className="text-white font-semibold mb-2 text-sm">Benefits</h4>
+                          <ul className="space-y-1">
+                            {service.benefits.map((benefit, benefitIndex) => (
+                              <li key={benefitIndex} className="text-gray-400 text-xs flex items-start">
+                                <span className="w-1.5 h-1.5 bg-white rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                                {benefit}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.div>
             );
           })}

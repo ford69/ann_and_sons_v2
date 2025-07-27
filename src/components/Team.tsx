@@ -122,7 +122,7 @@ const Team: React.FC = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {teamMembers.map((member, index) => (
             <motion.div
               key={member.id}
@@ -130,27 +130,25 @@ const Team: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              whileHover={{ y: -10 }}
+              whileHover={{ y: -5 }}
               onClick={() => openModal(member)}
-              className="group bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl border border-gray-700 overflow-hidden cursor-pointer hover:border-gray-600 transition-all duration-300 shadow-2xl"
+              className="group flex flex-col items-center cursor-pointer"
             >
-              <div className="relative overflow-hidden">
+              <div className="relative flex justify-center overflow-visible">
                 <img
                   src={member.image}
                   alt={`${member.name} - ${member.role} at A&S HR Consulting`}
-                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-40 h-40 object-cover rounded-full border-4 border-gray-800 shadow-lg group-hover:scale-105 transition-transform duration-300 bg-gray-900"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
               </div>
-              
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-gray-100 transition-colors">
+              <div className="pt-4 text-center">
+                <h3 className="text-lg font-bold text-white mb-1 group-hover:text-gray-100 transition-colors">
                   {member.name}
                 </h3>
-                <p className="text-gray-400 mb-4 group-hover:text-gray-300 transition-colors">
+                <p className="text-gray-400 mb-2 group-hover:text-gray-300 transition-colors">
                   {member.role}
                 </p>
-                <div className="text-sm text-gray-500 group-hover:text-gray-400 transition-colors">
+                <div className="text-xs text-gray-500 group-hover:text-gray-400 transition-colors">
                   Click to view full profile
                 </div>
               </div>

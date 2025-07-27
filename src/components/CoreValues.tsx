@@ -8,37 +8,37 @@ const CoreValues: React.FC = () => {
       icon: Shield,
       title: 'Integrity',
       description: 'We operate with unwavering honesty and transparency in all our interactions.',
-      color: 'from-blue-500 to-blue-600',
+      color: 'from-gray-800 to-gray-900',
     },
     {
       icon: Heart,
       title: 'Empathy',
       description: 'We understand and care deeply about the human experience in the workplace.',
-      color: 'from-red-500 to-red-600',
+      color: 'from-gray-700 to-gray-800',
     },
     {
       icon: Lightbulb,
       title: 'Innovation',
       description: 'We continuously evolve our approaches to meet the changing needs of modern business.',
-      color: 'from-yellow-500 to-yellow-600',
+      color: 'from-gray-600 to-gray-700',
     },
     {
       icon: Users,
       title: 'Collaboration',
       description: 'We believe in the power of partnership and collective achievement.',
-      color: 'from-green-500 to-green-600',
+      color: 'from-gray-700 to-gray-900',
     },
     {
       icon: Award,
       title: 'Excellence',
       description: 'We strive for the highest standards in everything we do.',
-      color: 'from-purple-500 to-purple-600',
+      color: 'from-gray-800 to-gray-700',
     },
     {
       icon: Zap,
       title: 'Agility',
       description: 'We adapt quickly to change and embrace new opportunities.',
-      color: 'from-orange-500 to-orange-600',
+      color: 'from-gray-900 to-gray-800',
     },
   ];
 
@@ -94,28 +94,25 @@ const CoreValues: React.FC = () => {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                whileHover={{ y: -10, scale: 1.02 }}
-                className="group relative bg-gradient-to-br from-gray-900 to-gray-800 p-8 rounded-2xl border border-gray-700 shadow-2xl hover:border-gray-600 transition-all duration-300 cursor-pointer overflow-hidden"
+                whileHover={{ y: -5, scale: 1.01 }}
+                className="group relative bg-gradient-to-br from-black to-gray-900 p-8 rounded-xl border border-gray-800 hover:border-gray-600 transition-all duration-300 cursor-pointer overflow-hidden"
               >
                 {/* Background Gradient Effect */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${value.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
-                
+                <div className={`absolute inset-0 bg-gradient-to-br ${value.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
+
                 <div className="relative z-10">
-                  <div className={`bg-gradient-to-r ${value.color} w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    <IconComponent className="w-8 h-8 text-white" />
+                  <div className={`bg-gradient-to-r ${value.color} w-14 h-14 rounded-lg flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-300`}>
+                    <IconComponent className="w-7 h-7 text-white" />
                   </div>
-                  
-                  <h3 className="text-xl font-bold text-white mb-4 group-hover:text-gray-100 transition-colors">
+
+                  <h3 className="text-lg font-bold text-white mb-3 group-hover:text-gray-100 transition-colors">
                     {value.title}
                   </h3>
-                  
+
                   <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors">
                     {value.description}
                   </p>
                 </div>
-
-                {/* Hover Effect Border */}
-                <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-gray-600 transition-all duration-300"></div>
               </motion.div>
             );
           })}

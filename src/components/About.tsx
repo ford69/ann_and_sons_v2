@@ -22,7 +22,7 @@ const About: React.FC = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-gray-50">
+    <section id="about" className="py-20 bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div
@@ -32,22 +32,21 @@ const About: React.FC = () => {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+            <div className="relative overflow-hidden rounded-xl">
               <img
                 src="https://images.pexels.com/photos/3184420/pexels-photo-3184420.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="A&S team collaboration"
-                className="w-full h-[600px] object-cover"
+                className="w-full h-[500px] object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
             </div>
-            
             <motion.div
               animate={{ rotate: [0, 5, 0, -5, 0] }}
               transition={{ duration: 6, repeat: Infinity }}
-              className="absolute -bottom-6 -left-6 bg-orange-500 p-6 rounded-xl shadow-lg text-white"
+              className="absolute -bottom-6 -left-6 bg-gradient-to-br from-gray-900 to-gray-700 p-5 rounded-lg text-white border border-gray-800 shadow-xl"
             >
-              <div className="text-3xl font-bold">15+</div>
-              <div className="text-sm">Years Experience</div>
+              <div className="text-2xl font-bold">15+</div>
+              <div className="text-xs">Years Experience</div>
             </motion.div>
           </motion.div>
 
@@ -59,21 +58,20 @@ const About: React.FC = () => {
             className="space-y-8"
           >
             <div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+              <h2 className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-6">
                 About A&S
               </h2>
-              <p className="text-lg text-gray-600 leading-relaxed mb-6">
+              <p className="text-lg text-gray-300 leading-relaxed mb-6">
                 Founded with a vision to revolutionize human resources, A&S combines deep industry expertise 
                 with innovative approaches to solve complex workforce challenges. We believe that great businesses 
                 are built by great people, and our mission is to help organizations unlock their full potential.
               </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-lg text-gray-400 leading-relaxed">
                 Our team of seasoned HR professionals brings decades of combined experience across diverse 
                 industries, ensuring that we deliver solutions that are not just effective, but transformative.
               </p>
             </div>
-
-            <div className="grid sm:grid-cols-3 gap-6">
+            <div className="flex gap-6">
               {values.map((value, index) => {
                 const IconComponent = value.icon;
                 return (
@@ -85,11 +83,10 @@ const About: React.FC = () => {
                     viewport={{ once: true }}
                     className="text-center"
                   >
-                    <div className="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                      <IconComponent className="w-8 h-8 text-orange-500" />
+                    <div className="bg-gradient-to-br from-gray-900 to-gray-800 w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-2">
+                      <IconComponent className="w-6 h-6 text-white" />
                     </div>
-                    <h3 className="font-semibold text-gray-900 mb-2">{value.title}</h3>
-                    <p className="text-sm text-gray-600">{value.description}</p>
+                    <h3 className="font-semibold text-gray-100 mb-1 text-sm">{value.title}</h3>
                   </motion.div>
                 );
               })}

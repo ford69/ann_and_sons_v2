@@ -40,7 +40,7 @@ const Partners: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Partner Logos */}
+        {/* Partner Logos Carousel */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -48,30 +48,37 @@ const Partners: React.FC = () => {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-8">
-            {partnerLogos.map((partner, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.1 }}
-                className="group"
-              >
-                <div className="bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 rounded-xl p-6 flex items-center justify-center h-20 hover:border-gray-600 transition-all duration-300">
-                  <div className="text-2xl font-bold text-white group-hover:text-gray-300 transition-colors">
-                    {partner.logo}
+          <div className="relative w-full overflow-x-auto">
+            <div className="flex gap-8 py-4 min-w-[600px] animate-scroll-x">
+              {partnerLogos.map((partner, index) => (
+                <div
+                  key={index}
+                  className="group flex-shrink-0 w-40"
+                >
+                  <div className="bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 rounded-xl p-6 flex items-center justify-center h-20 hover:border-gray-600 transition-all duration-300">
+                    <div className="text-2xl font-bold text-white group-hover:text-gray-300 transition-colors">
+                      {partner.logo}
+                    </div>
+                  </div>
+                  <div className="text-center mt-2">
+                    <span className="text-xs text-gray-500 group-hover:text-gray-400 transition-colors">
+                      {partner.name}
+                    </span>
                   </div>
                 </div>
-                <div className="text-center mt-2">
-                  <span className="text-xs text-gray-500 group-hover:text-gray-400 transition-colors">
-                    {partner.name}
-                  </span>
-                </div>
-              </motion.div>
-            ))}
+              ))}
+            </div>
           </div>
+          {/* Carousel animation style */}
+          <style>{`
+            @keyframes scroll-x {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(-50%); }
+            }
+            .animate-scroll-x {
+              animation: scroll-x 30s linear infinite;
+            }
+          `}</style>
         </motion.div>
 
         {/* Industries */}
